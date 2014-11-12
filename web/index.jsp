@@ -27,11 +27,17 @@
             <div id="avatar">
                 <%Usuario user = (Usuario) session.getAttribute("usuario"); %>
                 <%if (user != null) {%> 
-                <h5>Bienvenido, <%=user.getNombre()%>  (<a href='/paronline/perfil.jsp?username=<%=user.getLoginName()%>' >Perfil</a>) (<a id="link" href='/paronline/cerrar'>Cerrar Sesión</a>) </h5>
+                <h5>
+                        Bienvenido, <%=user.getNombre()%>  (<a href='/paronline/perfil.jsp?username=<%=user.getLoginName()%>' >Perfil</a>) (<a id="link" href='/paronline/cerrar'>Cerrar Sesión</a>) 
+                </h5>
                 
                 <%} else {%>
                     <a id="link" href='/paronline/login.jsp'>Ingresar</a>
                 <%}%>
+                
+                <%if (user != null && user.getTipo_usuario()== 0) {%>
+                    <a href="/paronline/register.jsp">Crear cuenta nueva</a>
+                <%}%> 
             </div>
     </header>
     <nav>

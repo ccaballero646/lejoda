@@ -38,7 +38,7 @@ public class CrearCompraServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Producto> lista = (List)request.getSession().getAttribute("lista_de_compras");
+        List<Producto> lista = (List)request.getSession().getAttribute("carrito");
         Usuario u = (Usuario)request.getSession().getAttribute("usuario");
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         //ver la forma de setear el total
@@ -46,7 +46,7 @@ public class CrearCompraServlet extends HttpServlet {
         Compra c = new Compra(u.getId_usuario(), total, new Date());
         CompraManager cm = new CompraManager();
         cm.crearCompra(c, lista, con);
-        request.getSession().removeAttribute("lista_de_compras");
+        request.getSession().removeAttribute("carrito");
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/transaccion/gracias.jsp");
         rd.forward(request, response);
     }

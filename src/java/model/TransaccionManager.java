@@ -28,7 +28,8 @@ public class TransaccionManager {
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement("insert into transaccion(fecha, usuario, total, direccion_envio, medio_pago, nro_tarjeta, estado) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, new java.sql.Date(t.getFecha().getTime()));
+            //ps.setDate(1, new java.sql.Date(t.getFecha().getTime()));
+            ps.setTimestamp(1, new java.sql.Timestamp(t.getFecha().getTime()));
             ps.setInt(2, t.getId_usuario());
             ps.setInt(3, (int) t.getTotal());
             ps.setString(4, t.getDireccionEnvio());

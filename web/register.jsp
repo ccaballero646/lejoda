@@ -93,7 +93,9 @@
                     </td>
                     <td>
                         <select name="tipo_usuario" size="1">
-                            <option value="0">Administrador</option>
+                            <%if (user != null && user.getTipo_usuario()== 0) {%>
+                                <option value="0">Administrador</option>
+                            <%}%>    
                             <option value="1">Usuario normal</option>
                         </select>
                     </td>

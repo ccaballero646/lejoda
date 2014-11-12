@@ -36,6 +36,10 @@
                 <%} else {%>
                     <a id="link" href='/paronline/login.jsp'>Ingresar</a>
                 <%}%>
+                
+                <%if (user != null && user.getTipo_usuario()== 0) {%>
+                    <a href="/paronline/register.jsp">Crear cuenta nueva</a>
+                <%}%> 
             </div>
     </header>
     <nav>

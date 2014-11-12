@@ -11,15 +11,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
 
 /**
  *
  * @author Cristhian
  */
-public class CompraManager {
+public class CompraManager 
+{
     private Compra compra;
     
-    public void crearCompra(Compra c, List<Producto> lista, Connection con) {
+    public void crearCompra(Compra c, List<Producto> lista, Connection con) throws ServletException {
+        CompraDetalleManager cDetalle = new CompraDetalleManager();
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement("insert into compra (usuario, total, fecha) values (?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -28,10 +33,17 @@ public class CompraManager {
             ps.setTimestamp(3, new java.sql.Timestamp(c.getFecha().getTime()));
             ps.execute();
             //obtener id insertado
+            int id_compra=0;
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    c.setIdCompra(generatedKeys.getInt(1));
+                    id_compra=generatedKeys.getInt(1);
+                    c.setIdCompra(id_compra);
                 }
+            }
+            
+            for (Producto p:lista)
+            {
+                cDetalle.crearCDetalle(p, con, id_compra);
             }
             
             //TODO por cada detalle, insertar en la bd
