@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Producto;
 import model.ProductoManager;
+import model.Usuario;
 
 /**
  *
@@ -57,14 +58,17 @@ public class AgregarAlCarrito extends HttpServlet {
         ProductoManager pManager = new ProductoManager();
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         Producto p = pManager.getProducto(id_producto, con);
-        
-        if(cantidadPedida > p.getCantidad() || cantidadPedida < 0) {
-            String url = "/producto/detalle?id=" + id_producto;
-            System.out.println(url);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/producto/detalle?id=" + id_producto);
-            PrintWriter out= response.getWriter();
-            out.println("<font color=red>"+ "La cantidad pedida supera el stock disponible o la cantidad es negativa" +"</font>");
-            rd.include(request, response);
+        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        if (user.getTipo_usuario()!=0)
+        {
+            if(cantidadPedida > p.getCantidad() || cantidadPedida < 0) {
+                String url = "/producto/detalle?id=" + id_producto;
+                System.out.println(url);
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/producto/detalle?id=" + id_producto);
+                PrintWriter out= response.getWriter();
+                out.println("<font color=red>"+ "La cantidad pedida supera el stock disponible o la cantidad es negativa" +"</font>");
+                rd.include(request, response);
+            }
         }
         
         p.setCantidad(cantidadPedida);

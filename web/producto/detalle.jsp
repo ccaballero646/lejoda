@@ -92,6 +92,14 @@
                         <input type="text" name="cantidad" value=${requestScope.producto.cantidad}>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <strong>Cantidad en Deposito</strong>:
+                    </td>
+                    <td>
+                        <input type="text" name="cantidadDeposito" value=${requestScope.producto.cantidadDeposito}>
+                    </td>
+                </tr>
             </table>
             <input type="submit" value="Guardar"><br>
             </form>

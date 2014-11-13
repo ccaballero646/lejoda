@@ -29,24 +29,24 @@ public class CompraDetalleManager {
     }
 
     
-    void crearCDetalle(Producto p, Connection con, int id_compra) throws ServletException 
+    void crearCDetalle(Producto producto, Connection con, int id_compra) throws ServletException 
     {
         PreparedStatement ps = null;
         try {
             ProductoManager pm = new ProductoManager();
-            Producto bd = pm.getProducto(p.getId_producto(), con);
-            bd.setCantidad(bd.getCantidad() + p.getCantidad());
-            pm.editarProducto(bd, con);
+            Producto productoBD = pm.getProducto(producto.getId_producto(), con);
+            productoBD.setCantidad(productoBD.getCantidadDeposito() + producto.getCantidad());
+            pm.editarProducto(productoBD, con);
             
             ps = con.prepareStatement("insert into compra_detalle (id_compra, producto, cantidad, subtotal) values (?,?,?,?)");
             
             ps.setInt(1, id_compra);
-            ps.setInt(2, p.getId_producto());
-            ps.setInt(3, p.getCantidad());
-            ps.setInt(4, (int)(p.getCantidad() * p.getPrecio()));
+            ps.setInt(2, producto.getId_producto());
+            ps.setInt(3, producto.getCantidad());
+            ps.setInt(4, (int)(producto.getCantidad() * producto.getPrecio()));
             
             ps.execute();
-            logger.info("Detalle ingresado: " + p.getDescripcion());
+            logger.info("Detalle ingresado: " + producto.getDescripcion());
         }
         catch(SQLException e) {
             logger.error("Problema al isertar detalle: " + e.getMessage());

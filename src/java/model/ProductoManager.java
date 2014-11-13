@@ -26,11 +26,12 @@ public class ProductoManager {
     public void crearProducto(Producto p, Connection con) throws ServletException {
         PreparedStatement ps = null;
         try {
-            ps = con.prepareStatement("insert into producto(nombre, categoria, precio, cantidad) values (?,?,?,?)");
+            ps = con.prepareStatement("insert into producto(nombre, categoria, precio, cantidad, cantidad_deposito) values (?,?,?,?,?)");
             ps.setString(1, p.getDescripcion());
             ps.setInt(2, p.getCategoria());
             ps.setDouble(3, p.getPrecio());
             ps.setInt(4, p.getCantidad());
+            ps.setInt(5, p.getCantidadDeposito());
             ps.execute();
             logger.info("Producto insertado: " + p.getDescripcion());
         }
@@ -57,7 +58,7 @@ public class ProductoManager {
             ps = con.prepareStatement("select * from producto");
             rs = ps.executeQuery();
             while(rs.next()) {
-                Producto p = new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getInt("categoria"), rs.getDouble("precio"), rs.getInt("cantidad"));
+                Producto p = new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getInt("categoria"), rs.getDouble("precio"), rs.getInt("cantidad"), rs.getInt("cantidad_deposito"));
                 Categoria cat = catManager.getCategoria(p.getCategoria(), con);
                 p.setCat(cat);
                 productoList.add(p);
@@ -82,12 +83,13 @@ public class ProductoManager {
     public void editarProducto(Producto p, Connection con) throws ServletException {
         PreparedStatement ps = null;
         try {
-            ps = con.prepareStatement("update producto set nombre=?, categoria=?, precio=?, cantidad=? where id_producto=?");
+            ps = con.prepareStatement("update producto set nombre=?, categoria=?, precio=?, cantidad=?, cantidad_deposito=? where id_producto=?");
             ps.setString(1, p.getDescripcion());
             ps.setInt(2, p.getCategoria());
             ps.setDouble(3, p.getPrecio());
             ps.setInt(4, p.getCantidad());
-            ps.setInt(5, p.getId_producto());
+            ps.setInt(5, p.getCantidadDeposito());
+            ps.setInt(6, p.getId_producto());
             ps.execute();
             logger.info("Producto editado con exito, ID= " + p.getId_producto());
         }
@@ -118,7 +120,8 @@ public class ProductoManager {
                                              rs.getString("nombre"),
                                              rs.getInt("categoria"),
                                              rs.getDouble("precio"),
-                                             rs.getInt("cantidad"));
+                                             rs.getInt("cantidad"),
+                                             rs.getInt("cantidadDeposito"));
                 
                 producto.setCat(cManager.getCategoria(producto.getCategoria(), con));
                 logger.info("Producto encontrado: " + producto.getDescripcion());

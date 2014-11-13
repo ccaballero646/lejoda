@@ -63,6 +63,7 @@ public class ProductoDetalle extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         double precio = Double.parseDouble(request.getParameter("precio"));
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        int cantidadDeposito = Integer.parseInt(request.getParameter("cantidadDeposito"));
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         
         //si el usuario no es administrador no se pueden modificar los detalles del producto
@@ -80,6 +81,7 @@ public class ProductoDetalle extends HttpServlet {
         p.setDescripcion(descripcion);
         p.setPrecio(precio);
         p.setCantidad(cantidad);
+        p.setCategoria(cantidadDeposito);
         pManager.editarProducto(p, con);
         
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/productos/listar");

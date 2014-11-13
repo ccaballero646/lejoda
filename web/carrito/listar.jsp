@@ -70,10 +70,11 @@
             
             <table id="lista" class="display" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr style="color: #ffffff">
                         <th>Nombre</th>
                         <th>Precio unitario</th>
                         <th>Cantidad</th>
+                        <th>Deposito</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -83,6 +84,7 @@
                         <th>Nombre</th>
                         <th>Precio unitario</th>
                         <th>Cantidad</th>
+                        <th>Deposito</th>
                         <th>Acciones</th>
                     </tr>
                 </tfoot>
@@ -92,6 +94,7 @@
                         <tr>
                             <td><c:out value="${producto.descripcion}" /></td>
                             <td><c:out value="${producto.precio}" /></td>
+                            <td><c:out value="${producto.cantidad}" /></td>
                             <td><c:out value="${producto.cantidad}" /></td>
                             <td><a href="/paronline/carrito/eliminar?id=${producto.id_producto}">Eliminar del carrito</a></td>
                         </tr>
@@ -109,6 +112,9 @@
                 <%if (user != null && user.getTipo_usuario()== 0) {%>
                     <td>
                         <a href="/paronline/compra/crear">Realizar Compra</a>                
+                    </td>
+                    <td>
+                        <a href="/paronline/moverProducto">Mover del deposito</a>                
                     </td>
                 <%}%>            
             </tr>
@@ -128,6 +134,8 @@
     <footer>
         <p>
             <strong>Cristhian Caballero®</strong>
+            <br>
+            <strong>Powered by TSUNAMI®</strong>
         </p>
         <p>
             Programacion de Aplicaciones en Redes-2014

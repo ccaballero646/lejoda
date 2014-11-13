@@ -71,12 +71,13 @@
             
             <table id="lista" class="display" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr style="color: #ffffff">
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Categoria</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
+                        <th>Deposito</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -88,6 +89,7 @@
                         <th>Categoria</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
+                        <th>Deposito</th>
                         <th>Acciones</th>
                     </tr>
                 </tfoot>
@@ -100,6 +102,7 @@
                             <td><c:out value="${producto.cat.descripcion}" /></td>
                             <td><c:out value="${producto.precio}" /></td>
                             <td><c:out value="${producto.cantidad}" /></td>
+                            <td><c:out value="${producto.cantidadDeposito}" /></td>
                             <td><a href="/paronline/producto/detalle?id=${producto.id_producto}">Mas Info</a></td>
                         </tr>
                     </c:forEach>

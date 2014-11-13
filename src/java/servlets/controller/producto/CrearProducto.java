@@ -73,6 +73,7 @@ public class CrearProducto extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         double precio = Double.parseDouble(request.getParameter("precio"));
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        int cantidadDeposito = Integer.parseInt(request.getParameter("cantidadDeposito"));
         int categoria = Integer.parseInt(request.getParameter("categoria"));
         
         String error = null;
@@ -80,11 +81,14 @@ public class CrearProducto extends HttpServlet {
         if(descripcion == null || descripcion.equals("")){
             error = "El nombre no puede ser nulo";
         }
-        if(precio == 0){
-            error = "El precio no puede ser 0";
+        if(precio < 0){
+            error = "El precio no puede negativo";
         }
-        if(cantidad == 0) {
-            error = "La cantidad no puede ser 0";
+        if(cantidad < 0) {
+            error = "La cantidad no puede negativa";
+        }
+        if(cantidadDeposito < 0) {
+            error = "La cantidad no puede negativa";
         }
         
         if(error != null) {
@@ -95,7 +99,7 @@ public class CrearProducto extends HttpServlet {
         }
         
         ProductoManager pManager = new ProductoManager();
-        Producto p = new Producto(descripcion, categoria, precio, cantidad);
+        Producto p = new Producto(descripcion, categoria, precio, cantidad, cantidadDeposito);
         Connection con = (Connection)getServletContext().getAttribute("DBConnection");
         pManager.crearProducto(p, con);
         logger.info("Producto creado con exito: " + p.getDescripcion());

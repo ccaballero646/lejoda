@@ -69,7 +69,7 @@
             
             <table id="lista" class="display" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr style="color: #ffffff">
                         <th>ID</th>
                         <th>Descripcion</th>
                         <th>Acciones</th>

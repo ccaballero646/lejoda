@@ -83,6 +83,14 @@
                         <input type="text" name="cantidad">
                     </td>
                 </tr>
+                 <tr>
+                    <td>
+                        <strong>Cantidad en Deposito</strong>:
+                    </td>
+                    <td>
+                        <input type="text" name="cantidadDeposito">
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <strong>Categoria</strong>:

@@ -78,6 +78,10 @@
         <servlet-name>CrearCompraServlet</servlet-name>
         <servlet-class>servlets.controller.compra.CrearCompraServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>moverProducto</servlet-name>
+        <servlet-class>servlets.controller.producto.MoverProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -137,6 +141,10 @@
     <servlet-mapping>
         <servlet-name>CrearCompraServlet</servlet-name>
         <url-pattern>/compra/crear</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>moverProducto</servlet-name>
+        <url-pattern>/moverProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

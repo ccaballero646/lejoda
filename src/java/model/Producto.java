@@ -22,6 +22,7 @@ public class Producto implements Serializable{
     private double precio;
     private int cantidad;
     private Categoria cat;
+    private int cantidadDeposito;
 
     public Categoria getCat() {
         return cat;
@@ -31,19 +32,21 @@ public class Producto implements Serializable{
         this.cat = cat;
     }
 
-    public Producto(int id_producto, String descripcion, int categoria, double precio, int cantidad) {
+    public Producto(int id_producto, String descripcion, int categoria, double precio, int cantidad, int cantidadDeposito) {
         this.id_producto = id_producto;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.cantidadDeposito = cantidadDeposito;
     }
 
-    public Producto(String descripcion, int categoria, double precio, int cantidad) {
+    public Producto(String descripcion, int categoria, double precio, int cantidad, int cantidadDeposito) {
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.cantidadDeposito = cantidadDeposito;
     }
     
     
@@ -86,6 +89,15 @@ public class Producto implements Serializable{
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public int getCantidadDeposito() {
+        return this.cantidadDeposito;
+    }
+    
+    public void setCantidadDeposito(int cantidadDeposito)
+    {
+        this.cantidadDeposito=cantidadDeposito;
     }
     
     

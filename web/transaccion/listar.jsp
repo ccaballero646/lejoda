@@ -66,7 +66,7 @@
             
             <table id="lista" class="display" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr style="color: #ffffff">
                         <th>Fecha</th>
                         <th>Total</th>
                         <th>Medio de Pago</th>
