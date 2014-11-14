@@ -121,7 +121,7 @@ public class ProductoManager {
                                              rs.getInt("categoria"),
                                              rs.getDouble("precio"),
                                              rs.getInt("cantidad"),
-                                             rs.getInt("cantidadDeposito"));
+                                             rs.getInt("cantidad_deposito"));
                 
                 producto.setCat(cManager.getCategoria(producto.getCategoria(), con));
                 logger.info("Producto encontrado: " + producto.getDescripcion());

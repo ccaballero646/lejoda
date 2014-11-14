@@ -67,7 +67,7 @@ public class ProductoDetalle extends HttpServlet {
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         
         //si el usuario no es administrador no se pueden modificar los detalles del producto
-        if (user.getTipo_usuario() != 0) {
+        if (user==null || user.getTipo_usuario() != 0) {
             String url = "/producto/detalle?id=" + id_producto;
             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
             PrintWriter out= response.getWriter();

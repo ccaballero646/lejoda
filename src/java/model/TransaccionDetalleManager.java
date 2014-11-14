@@ -26,6 +26,7 @@ public class TransaccionDetalleManager {
         try {
             ProductoManager pm = new ProductoManager();
             Producto bd = pm.getProducto(p.getId_producto(), con);
+            //Los productos vendidos se descuentan del stock fuera del deposito
             bd.setCantidad(bd.getCantidad() - p.getCantidad());
             pm.editarProducto(bd, con);
             

@@ -59,7 +59,8 @@ public class AgregarAlCarrito extends HttpServlet {
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         Producto p = pManager.getProducto(id_producto, con);
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-        if (user.getTipo_usuario()!=0)
+        
+        if (user == null || user.getTipo_usuario()!=0)
         {
             if(cantidadPedida > p.getCantidad() || cantidadPedida < 0) {
                 String url = "/producto/detalle?id=" + id_producto;

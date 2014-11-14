@@ -7,10 +7,20 @@ package servlets.controller.producto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Compra;
+import model.CompraManager;
+import model.Movimiento;
+import model.MovimientoManager;
+import model.Producto;
+import model.Usuario;
 
 /**
  *
@@ -30,18 +40,21 @@ public class MoverProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet moverProducto</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet moverProducto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        List<Producto> lista = (List)request.getSession().getAttribute("carrito");
+        Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+        Connection con = (Connection) getServletContext().getAttribute("DBConnection");
+        //ver la forma de setear el total
+        
+        int total = 0;
+        
+        Movimiento mov = new Movimiento(u.getId_usuario(), new Date());
+        MovimientoManager mm = new MovimientoManager();
+        mm.crearMovimiento(mov, lista, con);       
+        
+        request.getSession().removeAttribute("carrito");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/transaccion/gracias.jsp");
+        rd.forward(request, response); 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

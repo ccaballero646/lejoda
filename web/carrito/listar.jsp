@@ -74,7 +74,6 @@
                         <th>Nombre</th>
                         <th>Precio unitario</th>
                         <th>Cantidad</th>
-                        <th>Deposito</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -84,7 +83,6 @@
                         <th>Nombre</th>
                         <th>Precio unitario</th>
                         <th>Cantidad</th>
-                        <th>Deposito</th>
                         <th>Acciones</th>
                     </tr>
                 </tfoot>
@@ -94,7 +92,6 @@
                         <tr>
                             <td><c:out value="${producto.descripcion}" /></td>
                             <td><c:out value="${producto.precio}" /></td>
-                            <td><c:out value="${producto.cantidad}" /></td>
                             <td><c:out value="${producto.cantidad}" /></td>
                             <td><a href="/paronline/carrito/eliminar?id=${producto.id_producto}">Eliminar del carrito</a></td>
                         </tr>

@@ -13,38 +13,29 @@ import static model.TransaccionDetalleManager.logger;
 
 /**
  *
- * @author Cristhian
+ * @author HugoEladio
  */
-public class CompraDetalleManager {
-    private CompraDetalle detalle;
-    
-    public void crearDetalle (CompraDetalle cd, Connection con) {
-        PreparedStatement ps = null;
-        try {
-            ps = con.prepareStatement(null);
-        }
-        catch(SQLException e) {
-            
-        }
-    }
+public class MovimientoDetalleManager 
+{
+    private MovimientoDetalle detalle;
 
-    
-    void crearCDetalle(Producto producto, Connection con, int id_compra) throws ServletException 
+    void crearMDetalle(Producto producto, Connection con, int id_movimiento) throws ServletException 
     {
         PreparedStatement ps = null;
         try {
             ProductoManager pm = new ProductoManager();
             Producto productoBD = pm.getProducto(producto.getId_producto(), con);
-            //Las compras se agregan al deposito
-            productoBD.setCantidadDeposito(productoBD.getCantidadDeposito() + producto.getCantidad());
+            
+            //La cantidad extraida del deposito pasa a la cantidad fuera del deposito
+            productoBD.setCantidadDeposito(productoBD.getCantidadDeposito() - producto.getCantidad());
+            productoBD.setCantidad (productoBD.getCantidad() + producto.getCantidad());
             pm.editarProducto(productoBD, con);
             
-            ps = con.prepareStatement("insert into compra_detalle (id_compra, producto, cantidad, subtotal) values (?,?,?,?)");
+            ps = con.prepareStatement("insert into movimiento_detalle (id_movimiento, id_producto, cantidad) values (?,?,?)");
             
-            ps.setInt(1, id_compra);
+            ps.setInt(1, id_movimiento);
             ps.setInt(2, producto.getId_producto());
-            ps.setInt(3, producto.getCantidad());
-            ps.setInt(4, (int)(producto.getCantidad() * producto.getPrecio()));
+            ps.setInt(3, producto.getCantidad());            
             
             ps.execute();
             logger.info("Detalle ingresado: " + producto.getDescripcion());
@@ -60,11 +51,6 @@ public class CompraDetalleManager {
             catch(SQLException e) {
                 logger.error("Problema con la base de datos: " + e.getMessage());
             }
-        }
-        
-        
-        
-        
-    }
-    
+        }        
+    }     
 }
