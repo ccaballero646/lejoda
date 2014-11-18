@@ -53,7 +53,7 @@ public class MoverProducto extends HttpServlet {
         mm.crearMovimiento(mov, lista, con);       
         
         request.getSession().removeAttribute("carrito");
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/transaccion/gracias.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/producto/movimiento.jsp");
         rd.forward(request, response); 
     }
 

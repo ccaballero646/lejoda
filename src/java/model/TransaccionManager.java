@@ -101,7 +101,42 @@ public class TransaccionManager {
             rs = ps.executeQuery();
             while(rs.next()) {
                 Transaccion t = new Transaccion(rs.getInt("id_transaccion"),
-                                                rs.getDate("fecha"),
+                                                rs.getTimestamp("fecha"),
+                                                rs.getInt("usuario"),
+                                                rs.getDouble("total"),
+                                                rs.getString("direccion_envio"),
+                                                rs.getInt("medio_pago"),
+                                                rs.getString("nro_tarjeta"));
+                lista.add(t);
+                logger.info("Listado de transacciones exitoso");
+            }
+        }
+        catch(SQLException e) {
+            logger.error("Error listando transacciones: " + e.getMessage());
+            throw new ServletException("Error listando transacciones: " + e.getMessage());
+        }
+        finally {
+            try {
+                ps.close();
+                rs.close();
+            }
+            catch(SQLException e) {
+                logger.error("Problema con la base de datos: " + e.getMessage());
+            }
+        }
+        return lista;
+    }
+
+    public List<Transaccion> listarTodo(Connection con) throws ServletException {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Transaccion> lista = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("select * from transaccion");
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                Transaccion t = new Transaccion(rs.getInt("id_transaccion"),
+                                                rs.getTimestamp("fecha"),
                                                 rs.getInt("usuario"),
                                                 rs.getDouble("total"),
                                                 rs.getString("direccion_envio"),

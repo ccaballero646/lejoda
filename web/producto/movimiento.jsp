@@ -1,10 +1,8 @@
-<%-- 
-    Document   : login
-    Created on : sep 10, 2014, 6:09:57 p.m.
-    Author     : Cristhian
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuario"%>
+<%@page import="model.Categoria"%>
+<%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,6 +12,7 @@
         <link rel="stylesheet" href="/paronline/static/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/paronline/static/css/bootstrap-theme.css"/>
         <link rel="stylesheet" href="/paronline/static/css/estilos.css" />
+        <link rel="stylesheet" href="/paronline/static/css/jquery.dataTables.css" />
 </head>
 <body>
     <header>
@@ -37,7 +36,7 @@
         <ul>
             <li><a id="link" href='/paronline/productos/listar'>Lista de Productos</a></li>
             <%if (user != null && user.getTipo_usuario()== 0) {%>
-                <li><a id="link" href='/paronline/categoria/listar'>Categorías</a></li>
+                <li><a id="link" href='/paronline/categoria/listar'>Categorias</a></li>
             <%}%>
             <li><a id="link" href='/paronline/carrito/listar'>Carrito</a></li>
             <li class="link"><a id="link" href='/paronline/transaccion/historial'>Historial de Venta</a></li>
@@ -51,28 +50,8 @@
         </div>
 
         <div class="col-md-8">
-            <form action="/paronline/Login" method="post">
-            <table>
-                <tr>
-                    <td>
-                        <strong>Nombre de usuario</strong>:
-                    </td>
-                    <td>
-                        <input type="text" name="login_name">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Contraseña</strong>:
-                    </td>
-                    <td>
-                        <input type="password" name="password">
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" value="Ingresar"><br>
-        </form>
-            <h5>Si no posee una cuenta, por favor <a href="/paronline/register.jsp">regístrese</a>.</h5>
+            <h1>Transferencia Realizada con exito!</h1>
+            
          </div>
 
     </section>
@@ -85,9 +64,6 @@
             Programacion de Aplicaciones en Redes-2014
         </p>
     </footer>
-
-    <script src="/paronline/static/js/jquery-1.11.1.min.js"></script>
-
 
 </body>
 </html>

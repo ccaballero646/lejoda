@@ -47,7 +47,7 @@ public class CrearCompraServlet extends HttpServlet {
         CompraManager cm = new CompraManager();
         cm.crearCompra(c, lista, con);
         request.getSession().removeAttribute("carrito");
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/transaccion/gracias.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/producto/compra.jsp");
         rd.forward(request, response);
     }
 

@@ -49,7 +49,7 @@
                 <li><a id="link" href='/paronline/categoria/listar'>Categorias</a></li>
             <%}%>
             <li><a id="link" href='/paronline/carrito/listar'>Carrito</a></li>
-            <li class="link"><a id="link" href='/paronline/transaccion/historial'>Historial de Compra</a></li>
+            <li class="link"><a id="link" href='/paronline/transaccion/historial'>Historial de Venta</a></li>
 	</ul>
     </nav>
     <nav class="menu1">
@@ -112,6 +112,9 @@
                     </td>
                     <td>
                         <a href="/paronline/moverProducto">Mover del deposito</a>                
+                    </td>
+                    <td>
+                        <a href="/paronline/darBajaProducto">Dar de baja</a>                
                     </td>
                 <%}%>            
             </tr>

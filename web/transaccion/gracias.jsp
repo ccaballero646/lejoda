@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-md-8">
-            <h1>Gracias por comprar en ParOnline!</h1>
+            <h1>Venta Realizada con exito</h1>
             
          </div>
 

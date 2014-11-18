@@ -41,7 +41,7 @@
                 <li><a id="link" href='categoria/listar'>Categorías</a></li>
             <%}%>
             <li><a id="link" href='carrito/listar.jsp'>Carrito</a></li>
-            <li class="link"><a id="link" href='transaccion/historial'>Historial de Compra</a></li>
+            <li class="link"><a id="link" href='transaccion/historial'>Historial de Venta</a></li>
 	</ul>
     </nav>
     <section id="contenido">

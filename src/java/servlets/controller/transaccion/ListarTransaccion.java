@@ -40,7 +40,15 @@ public class ListarTransaccion extends HttpServlet {
         Usuario user = (Usuario)request.getSession().getAttribute("usuario");
         Connection con = (Connection) getServletContext().getAttribute("DBConnection");
         TransaccionManager tManager = new TransaccionManager();
-        List<Transaccion> lista = tManager.listar(user.getId_usuario(), con);
+        List<Transaccion> lista;
+        if (user.getTipo_usuario()!=0)
+        {
+            lista = tManager.listar(user.getId_usuario(), con);
+        }
+        else
+        {
+            lista = tManager.listarTodo(con);
+        }
         for(Transaccion t : lista) {
             if(t.getMedioPago() == 0)
                 t.setForma("Efectivo");

@@ -49,7 +49,7 @@
                 <li><a id="link" href='/paronline/categoria/listar'>Categorias</a></li>
             <%}%>
             <li><a id="link" href='/paronline/carrito/listar'>Carrito</a></li>
-            <li class="link"><a id="link" href='/paronline/transaccion/historial'>Historial de Compra</a></li>
+            <li class="link"><a id="link" href='/paronline/transaccion/historial'>Historial de Venta</a></li>
 	</ul>
     </nav>
     <nav class="menu1">
@@ -68,6 +68,7 @@
                 <thead>
                     <tr style="color: #ffffff">
                         <th>Fecha</th>
+                        <th>Usuario</th>
                         <th>Total</th>
                         <th>Medio de Pago</th>
                         <th>Nro Tarjeta</th>
@@ -78,6 +79,7 @@
                 <tfoot>
                     <tr>
                         <th>Fecha</th>
+                        <th>Usuario</th>
                         <th>Total</th>
                         <th>Medio de Pago</th>
                         <th>Nro Tarjeta</th>
@@ -89,6 +91,7 @@
                     <c:forEach items="${requestScope.lista}" var="transaccion">
                         <tr>
                             <td><c:out value="${transaccion.fecha}" /></td>
+                            <td><c:out value="${transaccion.id_usuario}" /></td>
                             <td><c:out value="${transaccion.total}" /></td>
                             <td><c:out value="${transaccion.forma}" /></td>
                             <td><c:out value="${transaccion.nroTarjeta}" /></td>
